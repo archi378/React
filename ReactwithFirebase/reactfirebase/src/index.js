@@ -22,28 +22,40 @@ class Employee extends React.Component{
             Employees: ' '
         }
     }
-    componentDidMount(){
+    // componentDidMount(){
+    //     const database = firebase.database().ref().child('Employees')
+    //     const rootref = database.child('name')
+    //     rootref.on('value', snap =>{
+    //         this.setState({
+    //             Employees:snap.val()
+    //         })
+    //     })
+    // }
+    show(){
+        
         const database = firebase.database().ref().child('Employees')
         const rootref = database.child('name')
         rootref.on('value', snap =>{
             this.setState({
                 Employees:snap.val()
             })
-        })
-    }
-    show(){
-       console.log(firebase)
+        }) 
     }
 
         render(){
             return(
+                <section>
                 <div>     
                  <h3>Show Employees List <span>
                     <button type="submit" id="save-buttton" onClick = {this.show}>Show</button></span>
                  </h3> 
-                <input type="textarea" id="employee-list" value={this.state.Employees}/>
-                <h4>{this.state.Employees}</h4>
+                <p>{this.state.Employees}</p>
                 </div>
+
+                <div>
+                    
+                </div>
+                </section>
             )
         }
 }
